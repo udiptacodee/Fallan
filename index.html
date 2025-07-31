@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hey Shruti 🌹</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #ffe0ec, #ffc3d1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #clickButton {
+      padding: 20px 40px;
+      background-color: #ff4b6e;
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+      z-index: 100;
+    }
+
+    #clickButton:hover {
+      transform: scale(1.1);
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: fall 8s linear forwards;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: sparkle 2s ease-out forwards;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+
+    #message {
+      position: absolute;
+      bottom: 30px;
+      font-size: 28px;
+      color: #b3004b;
+      display: none;
+      animation: fadeIn 2s ease forwards;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="clickButton">Hey Shruti, Click Here 🌹</button>
+  <div id="message">All these roses are for you, Shruti 🌹💖</div>
+
+  <!-- Romantic non-copyright music -->
+  <audio id="music" src="https://cdn.pixabay.com/download/audio/2022/10/10/audio_2cf6566c27.mp3" preload="auto" loop></audio>
+
+  <script>
+    const button = document.getElementById('clickButton');
+    const message = document.getElementById('message');
+    const music = document.getElementById('music');
+    let musicStarted = false;
+
+    button.addEventListener('click', () => {
+      if (!musicStarted) {
+        music.play().catch((err) => {
+          console.warn("Autoplay blocked:", err);
+        });
+        musicStarted = true;
+      }
+
+      // 300 Falling Rose Emojis
+      for (let i = 0; i < 300; i++) {
+        const emoji = document.createElement('div');
+        emoji.classList.add('emoji');
+        emoji.textContent = '🌹';
+        emoji.style.left = Math.random() * window.innerWidth + 'px';
+        emoji.style.fontSize = (20 + Math.random() * 20) + 'px';
+        emoji.style.animationDuration = (6 + Math.random() * 3) + 's';
+        emoji.style.animationDelay = Math.random() * 3 + 's';
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 10000);
+      }
+
+      // Sparkles
+      for (let i = 0; i < 100; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = Math.random() * window.innerWidth + 'px';
+        sparkle.style.top = Math.random() * window.innerHeight + 'px';
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 2000);
+      }
+
+      // Show message
+      setTimeout(() => {
+        message.style.display = 'block';
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>
